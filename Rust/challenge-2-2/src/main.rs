@@ -1,0 +1,23 @@
+fn main() {
+    let mut input = vec!["forward 5", "down 5", "forward 8", "up 3", "down 8", "forward 2"];
+    let mut hpos = 0;
+    let mut depth = 0;
+    let mut aim = 0;
+    for i in 0..input.len() {
+        let split = (input[i].split(" ")).collect::<Vec<&str>>();
+        let direction = split[0];
+        let distance = split[1].parse::<i32>().unwrap();
+        println!("{}", direction);
+        println!("{}", distance);
+        if direction == "up" {
+            aim = aim - distance;
+        } else if direction == "down" {
+            aim = aim + distance;
+        } else if direction == "forward" {
+            hpos = hpos + distance;
+            depth = depth + (aim * distance)
+        }
+    }
+    let solution = hpos * depth;
+    println!("{}", solution);
+}
